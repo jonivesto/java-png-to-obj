@@ -19,17 +19,15 @@ class Reader {
         int w = image.getWidth();
         int h = image.getHeight();
 
-        // Raw array
-        int[] rawPixels = image.getRGB(0, 0, w, h, null, 0, w);
-
-        // Pretty array
         Color[][] pixels = new Color[w][h];
 
-        for(int i = 0; i < h*w; i++) {
-            // Pixel color
-            Color color = new Color(rawPixels[i], true);
-            System.out.println("rgba(" + color.getRed() + ", " + color.getGreen() + ", " + color.getBlue() + ", " + color.getAlpha() + ")");
-            //TODO: Continue here
+        // Get pixels
+        for(int i = 0; i < w; i++) {
+            for(int j = 0; j < h; j++) {
+                Color color = new Color(image.getRGB(i, j), true);
+                pixels[i][j] = color;
+                System.out.println("rgba(" + color.getRed() + ", " + color.getGreen() + ", " + color.getBlue() + ", " + color.getAlpha() + ")");
+            }
         }
 
         return pixels;
