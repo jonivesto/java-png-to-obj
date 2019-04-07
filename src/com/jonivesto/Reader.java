@@ -24,9 +24,7 @@ class Reader {
         // Get pixels
         for(int i = 0; i < w; i++) {
             for(int j = 0; j < h; j++) {
-                Color color = new Color(image.getRGB(i, j), true);
-                pixels[i][j] = color;
-                System.out.println("rgba(" + color.getRed() + ", " + color.getGreen() + ", " + color.getBlue() + ", " + color.getAlpha() + ")");
+                pixels[i][j] = new Color(image.getRGB(i, j), true);
             }
         }
 
