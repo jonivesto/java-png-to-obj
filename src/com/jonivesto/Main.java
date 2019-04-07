@@ -17,6 +17,8 @@ public class Main {
         String path = "C:/Users/diabo/Desktop/test.png";
 
         // Generate OBJ from the image file
-        writer.run(path, reader.run(path));
+        writer.data = reader.run(path);
+        writer.path = path;
+        writer.run();
     }
 }
