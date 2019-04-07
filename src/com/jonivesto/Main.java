@@ -16,9 +16,12 @@ public class Main {
         //String path = scanner.next();
         String path = "C:/Users/diabo/Desktop/test.png";
 
-        // Generate OBJ from the image file
+        // Init writer
         writer.data = reader.run(path);
         writer.path = path;
-        writer.run();
+
+        // Generate
+        writer.generateMtl();
+        writer.generateObj();
     }
 }
