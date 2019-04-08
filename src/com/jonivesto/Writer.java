@@ -8,8 +8,13 @@ import java.io.UnsupportedEncodingException;
 
 class Writer {
 
+    // Members
     String path;
     Color[][] data;
+
+    // Results
+    String obj = "-";
+    String mtl = "-";
 
     // Generates path for a new file
     private String filepath(String extension){
@@ -33,24 +38,37 @@ class Writer {
         writer.println("# https://github.com/jonivesto/java-png-to-obj");
 
         // Get each pixel
+        // Print preview
         for(int i = 0; i < data.length; i++) {
             for(int j = 0; j < data[i].length; j++) {
                 // Only process pixels with no transparency
                 if(data[i][j].getAlpha() == 255){
-                    System.out.println("rgba(" + data[i][j].getRed() + ", "
+                    /*System.out.println("rgba(" + data[i][j].getRed() + ", "
                                                + data[i][j].getGreen() + ", "
                                                + data[i][j].getBlue() + ", "
                                                + data[i][j].getAlpha() + ") pos("
-                                               + i + ", " + j + ")");
-
-                    //TODO: write vertices
-                }
-            }
+                                               + i + ", " + j + ")");*/
+                    System.out.print("XX");
+                } else System.out.print("  ");
+            } System.out.println();
         }
+
+        // Convert to vertices
+        data = toVertices();
 
         // Save
         writer.close();
-        System.out.println("Result: " + filepath(".obj"));
+        obj = "Result: " + filepath(".obj");
+    }
+
+    // Expand pixel array to vertice array
+    private Color[][] toVertices() {
+
+        Color[][] verts = null;
+
+
+
+        return verts;
     }
 
     // Write .mtl file
@@ -67,7 +85,7 @@ class Writer {
 
         // Save
         writer.close();
-        System.out.println("Result: " + filepath(".mtl"));
+        mtl = "Result: " + filepath(".mtl");
     }
 
 }

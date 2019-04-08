@@ -12,7 +12,7 @@ public class Main {
         Writer writer = new Writer();
 
         // Get path
-        //System.out.print("PNG file path: ");
+        //System.out.print("Absolute path to your PNG file: ");
         //String path = scanner.next();
         String path = "C:/Users/diabo/Desktop/test.png";
 
@@ -20,8 +20,12 @@ public class Main {
         writer.data = reader.run(path);
         writer.path = path;
 
-        // Generate
+        // Generate files
         writer.generateMtl();
         writer.generateObj();
+
+        // Print result paths
+        System.out.println(writer.obj);
+        System.out.println(writer.mtl);
     }
 }
