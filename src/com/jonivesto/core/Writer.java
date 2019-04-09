@@ -1,19 +1,21 @@
-package com.jonivesto;
+package com.jonivesto.core;
+
+import com.jonivesto.vector.Face;
 
 import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 
-class Writer {
+public class Writer {
 
-    // Member
-    String path;
-    Color[][] data;
+    public String path;
+    public Color[][] data;
+    public String obj, mtl = "-";
 
-    // Status
-    String obj, mtl = "-";
+    private ArrayList<Face> faces = new ArrayList<>();
 
     // Header comments for result files
     private final String[] HEADERS = {
@@ -41,7 +43,7 @@ class Writer {
     }
 
     // Write .obj file
-    void generateObj(){
+    public void generateObj(){
         PrintWriter writer = null;
         try { writer = new PrintWriter( filepath(".obj"), "UTF-8"); }
         catch (FileNotFoundException | UnsupportedEncodingException e) { e.printStackTrace(); }
@@ -60,11 +62,12 @@ class Writer {
                     //                           + data[i][j].getBlue() + ", "
                     //                           + data[i][j].getAlpha() + ") pos("
                     //                           + i + ", " + j + ")");
-                    System.out.print("XX");
+                    System.out.print("X ");
                 } else System.out.print("  ");
             } System.out.println();
         }
 
+        //TODO
 
         // Save
         writer.close();
@@ -72,7 +75,7 @@ class Writer {
     }
 
     // Write .mtl file
-    void generateMtl(){
+    public void generateMtl(){
         PrintWriter writer = null;
         try { writer = new PrintWriter( filepath(".mtl"), "UTF-8"); }
         catch (FileNotFoundException | UnsupportedEncodingException e) { e.printStackTrace(); }
@@ -80,7 +83,7 @@ class Writer {
         assert writer != null;
         setHeaders(writer);
 
-        //TODO: write material
+        //TODO
 
         // Save
         writer.close();

@@ -1,4 +1,4 @@
-package com.jonivesto;
+package com.jonivesto.core;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -6,9 +6,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-class Reader {
+public class Reader {
 
-    Color[][] run(String path) {
+    public Color[][] run(String path) {
 
         // Get image
         BufferedImage image = null;

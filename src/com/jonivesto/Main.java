@@ -1,5 +1,8 @@
 package com.jonivesto;
 
+import com.jonivesto.core.Reader;
+import com.jonivesto.core.Writer;
+
 import java.util.Scanner;
 
 public class Main {
