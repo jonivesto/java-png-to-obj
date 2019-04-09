@@ -1,6 +1,6 @@
-package com.jonivesto.core;
+package com.jonivesto.engine;
 
-import com.jonivesto.vector.Face;
+import com.jonivesto.space.*;
 
 import java.awt.*;
 import java.io.File;

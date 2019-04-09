@@ -1,7 +1,7 @@
 package com.jonivesto;
 
-import com.jonivesto.core.Reader;
-import com.jonivesto.core.Writer;
+import com.jonivesto.engine.Reader;
+import com.jonivesto.engine.Writer;
 
 import java.util.Scanner;
 

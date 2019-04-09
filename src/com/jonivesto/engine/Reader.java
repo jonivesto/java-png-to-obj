@@ -1,4 +1,4 @@
-package com.jonivesto.core;
+package com.jonivesto.engine;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -16,6 +16,7 @@ public class Reader {
         catch (IOException e) { e.printStackTrace(); }
 
         // Get image dimensions
+        assert image != null;
         int w = image.getWidth();
         int h = image.getHeight();
 
