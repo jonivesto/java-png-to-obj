@@ -2,10 +2,11 @@ package com.jonivesto.space;
 
 public class Face {
 
-    final double H = 0.5;
+    private final static double H = 0.5;
 
-    private Vertex[] vertices = new Vertex[4];
+    public Vertex[] vertices = new Vertex[4];
 
+    // Construct from pixels
     public Face(double x, double y){
         vertices[0] = new Vertex(x - H, y - H, 0);
         vertices[1] = new Vertex(x + H, y - H, 0);
@@ -13,9 +14,10 @@ public class Face {
         vertices[3] = new Vertex(x + H, y + H, 0);
     }
 
-    // Get array of vertices
-    public Vertex[] getVertices(){
-        return this.vertices;
+    // Construct from vertices
+    public Face(Vertex[] vertices){
+        assert vertices.length != 4;
+        this.vertices = vertices;
     }
 
 }

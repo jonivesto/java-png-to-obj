@@ -13,15 +13,13 @@ public class Writer {
 
     public String path;
     public Color[][] data;
-    public String obj, mtl = "-";
 
     private ArrayList<Face> faces = new ArrayList<>();
 
     // Header comments for result files
-    private final String[] HEADERS = {
+    private final static String[] HEADERS = {
             "This file is generated using .PNG to .OBJ converter",
             "Source: https://github.com/jonivesto/java-png-to-obj",
-            "Author: Joni-Pekka Vesto",
             "Website: https://www.jonivesto.com"
     };
 
@@ -52,11 +50,12 @@ public class Writer {
         setHeaders(writer);
 
         // Get each pixel
-        // Print preview
         for(int i = 0; i < data.length; i++) {
             for(int j = 0; j < data[i].length; j++) {
                 // Only process pixels with no transparency
                 if(data[i][j].getAlpha() == 255){
+                    // Create face
+                    faces.add(new Face(i, j));
                     //System.out.println("rgba(" + data[i][j].getRed() + ", "
                     //                           + data[i][j].getGreen() + ", "
                     //                           + data[i][j].getBlue() + ", "
@@ -67,11 +66,21 @@ public class Writer {
             } System.out.println();
         }
 
-        //TODO
+        printVertices();
 
         // Save
         writer.close();
-        obj = "Result: " + filepath(".obj");
+        System.out.println("Result: " + filepath(".obj"));
+    }
+
+    // Print all generated faces
+    private void printVertices() {
+        for (Face face : faces) {
+            System.out.println(face);
+            for (Vertex vertex : face.vertices) {
+                System.out.println("x: " + vertex.x + " y: " + vertex.y + " z: " + vertex.z);
+            }
+        }
     }
 
     // Write .mtl file
@@ -87,7 +96,7 @@ public class Writer {
 
         // Save
         writer.close();
-        mtl = "Result: " + filepath(".mtl");
+        System.out.println("Result: " + filepath(".mtl"));
     }
 
 }

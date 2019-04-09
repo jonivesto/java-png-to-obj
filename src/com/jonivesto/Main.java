@@ -24,11 +24,7 @@ public class Main {
         writer.path = path;
 
         // Generate files
-        writer.generateMtl();
         writer.generateObj();
-
-        // Print result paths
-        System.out.println(writer.obj);
-        System.out.println(writer.mtl);
+        writer.generateMtl();
     }
 }

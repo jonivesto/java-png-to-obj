@@ -1,8 +1,8 @@
 package com.jonivesto.space;
 
-class Vertex {
+public class Vertex {
 
-    double x, y, z;
+    public double x, y, z;
 
     Vertex(double x, double y, double z){
         this.x = x;
