@@ -2,6 +2,7 @@ package com.jonivesto.space;
 
 public class Vertex {
 
+    public int id;
     private double x, y, z;
 
     Vertex(double x, double y, double z){

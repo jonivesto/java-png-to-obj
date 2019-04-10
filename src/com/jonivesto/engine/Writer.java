@@ -43,16 +43,6 @@ public class Writer {
         } writer.println("");
     }
 
-    // Print all generated faces
-    private void printVertices() {
-        for (Face face : faces) {
-            System.out.println(face);
-            for (Vertex vertex : face.vertices) {
-                System.out.println(vertex.getMarkup());
-            }
-        }
-    }
-
     // Print all generated materials
     private void printMaterials() {
         for (Material material : materials) {
@@ -111,13 +101,14 @@ public class Writer {
         // Write vertices
         for (Face face : faces) {
             for (Vertex vertex : face.vertices) {
-                // Add and write vertive if not already written
+                // Add and write vertice if not already written
                 String markup = vertex.getMarkup();
                 if(!usedVertices.contains(markup)){
                     usedVertices.add(markup);
                     writer.println(markup);
                 } else {
-                    //TODO: Get indexOf
+                    // Else set id for the vertex
+                    vertex.id = usedVertices.indexOf(markup);
                 }
             }
         }
