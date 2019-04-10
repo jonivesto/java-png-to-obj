@@ -95,10 +95,13 @@ public class Writer {
         }
 
         // Declare material file
+        writer.println("# Materials");
         writer.println("mtllib " + filename() + ".mtl");
+        writer.println("");
         printMaterials();
 
         // Write vertices
+        writer.println("# Vertices");
         for (Face face : faces) {
             for (Vertex vertex : face.vertices) {
                 // Add and write vertice if not already written
@@ -107,14 +110,20 @@ public class Writer {
                     usedVertices.add(markup);
                     writer.println(markup);
                 }
+                // Give id to each vertex
                 vertex.id = usedVertices.indexOf(markup) + 1;
             }
         }
 
         // Write faces
+        String currentMaterial = "";
         writer.println("");
+        writer.println("# Faces");
         for (Face face : faces) {
-            writer.println("usemtl " + face.material.name);
+            if(!currentMaterial.equals(face.material.name)) {
+                writer.println("usemtl " + face.material.name);
+                currentMaterial = face.material.name;
+            }
             writer.println(face.getMarkup());
         }
 
