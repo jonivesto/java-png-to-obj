@@ -15,9 +15,8 @@ public class Writer {
     public Color[][] data;
 
     private ArrayList<Face> faces = new ArrayList<>();
+    private ArrayList<String> vertices = new ArrayList<>();
     private ArrayList<Material> materials = new ArrayList<>();
-
-    private ArrayList<String> usedVertices = new ArrayList<>();
 
     // Header comments for result files
     private final static String[] HEADERS = {
@@ -75,6 +74,7 @@ public class Writer {
                         if(m.name.equals(materialName(data[i][j]))){
                             material = m;
                             duplicate = true;
+                            break;
                         }
                     }
 
@@ -106,12 +106,12 @@ public class Writer {
             for (Vertex vertex : face.vertices) {
                 // Add and write vertice if not already written
                 String markup = vertex.getMarkup();
-                if(!usedVertices.contains(markup)){
-                    usedVertices.add(markup);
+                if(!vertices.contains(markup)){
+                    vertices.add(markup);
                     writer.println(markup);
                 }
                 // Give id to each vertex
-                vertex.id = usedVertices.indexOf(markup) + 1;
+                vertex.id = vertices.indexOf(markup) + 1;
             }
         }
 

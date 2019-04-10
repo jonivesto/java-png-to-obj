@@ -15,9 +15,8 @@ public class Main {
         Writer writer = new Writer();
 
         // Get path
-        //System.out.print("Absolute path to your PNG file: ");
-        //String path = scanner.next();
-        String path = "C:/Users/diabo/Desktop/test.png";
+        System.out.print("Absolute path to your PNG file: ");
+        String path = scanner.next();
 
         // Init writer
         writer.data = reader.run(path);
