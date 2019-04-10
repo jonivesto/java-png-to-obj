@@ -17,6 +17,8 @@ public class Writer {
     private ArrayList<Face> faces = new ArrayList<>();
     private ArrayList<Material> materials = new ArrayList<>();
 
+    private ArrayList<String> usedVertices = new ArrayList<>();
+
     // Header comments for result files
     private final static String[] HEADERS = {
             "This file is generated using .PNG to .OBJ converter",
@@ -95,15 +97,30 @@ public class Writer {
 
                     // Create faces
                     faces.add(new Face(i, j, 0.0, material));
-                    faces.add(new Face(i, j, 1.0, material));
 
                     // Print preview
-                    System.out.print("X ");
+                    System.out.print("10");
                 } else System.out.print("  ");
             } System.out.println();
         }
 
+        // Declare material file
+        writer.println("mtllib " + filename() + ".mtl");
         printMaterials();
+
+        // Write vertices
+        for (Face face : faces) {
+            for (Vertex vertex : face.vertices) {
+                // Add and write vertive if not already written
+                String markup = vertex.getMarkup();
+                if(!usedVertices.contains(markup)){
+                    usedVertices.add(markup);
+                    writer.println(markup);
+                } else {
+                    //TODO: Get indexOf
+                }
+            }
+        }
 
         // Save and close
         writer.close();
