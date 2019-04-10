@@ -21,7 +21,7 @@ public class Writer {
     private final static String[] HEADERS = {
             "This file is generated using .PNG to .OBJ converter",
             "Source: https://github.com/jonivesto/java-png-to-obj",
-            "Website: https://www.jonivesto.com", ""
+            "Website: https://www.jonivesto.com"
     };
 
     // Generates path for a new file
@@ -38,7 +38,7 @@ public class Writer {
     private void setHeaders(PrintWriter writer) {
         for (String line : HEADERS) {
             writer.println("# " + line);
-        }
+        } writer.println("");
     }
 
     // Print all generated faces
@@ -54,7 +54,7 @@ public class Writer {
     // Print all generated materials
     private void printMaterials() {
         for (Material material : materials) {
-            System.out.println(material.name);
+            System.out.println("Material: " + material.name);
         }
     }
 
@@ -85,6 +85,7 @@ public class Writer {
                             duplicate = true;
                         }
                     }
+
                     // Create material if not exists
                     if(!duplicate){
                         Material newMaterial = new Material(materialName(data[i][j]), data[i][j]);
@@ -96,22 +97,17 @@ public class Writer {
                     faces.add(new Face(i, j, 0.0, material));
                     faces.add(new Face(i, j, 1.0, material));
 
-                    //System.out.println("rgba(" + data[i][j].getRed() + ", "
-                    //                           + data[i][j].getGreen() + ", "
-                    //                           + data[i][j].getBlue() + ", "
-                    //                           + data[i][j].getAlpha() + ") pos("
-                    //                           + i + ", " + j + ")");
+                    // Print preview
                     System.out.print("X ");
                 } else System.out.print("  ");
             } System.out.println();
         }
 
-        printVertices();
         printMaterials();
 
         // Save and close
         writer.close();
-        System.out.println("Result: " + filepath(".obj"));
+        System.out.println("File: " + filepath(".obj"));
     }
 
     // Write .mtl file
@@ -123,21 +119,31 @@ public class Writer {
         assert writer != null;
         setHeaders(writer);
 
-        //TODO
+        // Define and write materials
+        for (Material material : materials) {
+            writer.println("newmtl " + material.name); // Declare
+            writer.println("illum 1"); // Illumination
+            writer.println("Kd " + material.getDiffuse()); // Diffuse
+            writer.println("Ka 0.00 0.00 0.00"); // Ambient
+            writer.println("Ks 0.00 0.00 0.00"); // Specular
+            writer.println("Tf 1.00 1.00 1.00");
+            writer.println(""); // Space
+        }
 
         // Save and close
         writer.close();
-        System.out.println("Result: " + filepath(".mtl"));
+        System.out.println("File: " + filepath(".mtl"));
     }
 
+    // Create material name from Color object
     private String materialName(Color color) {
         String r = Integer.toHexString(color.getRed());
         String g = Integer.toHexString(color.getGreen());
         String b = Integer.toHexString(color.getBlue());
 
         return "mat_" + (r.length() == 1? "0" + r : r) +
-                         (g.length() == 1? "0" + g : g) +
-                         (b.length() == 1? "0" + b : b);
+                        (g.length() == 1? "0" + g : g) +
+                        (b.length() == 1? "0" + b : b);
     }
 
 }
