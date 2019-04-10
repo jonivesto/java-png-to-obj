@@ -106,11 +106,16 @@ public class Writer {
                 if(!usedVertices.contains(markup)){
                     usedVertices.add(markup);
                     writer.println(markup);
-                } else {
-                    // Else set id for the vertex
-                    vertex.id = usedVertices.indexOf(markup);
                 }
+                vertex.id = usedVertices.indexOf(markup) + 1;
             }
+        }
+
+        // Write faces
+        writer.println("");
+        for (Face face : faces) {
+            writer.println("usemtl " + face.material.name);
+            writer.println(face.getMarkup());
         }
 
         // Save and close

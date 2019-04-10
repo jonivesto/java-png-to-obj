@@ -5,7 +5,7 @@ public class Face {
     private final static double H = 0.5;
 
     public Vertex[] vertices = new Vertex[4];
-    private Material material;
+    public Material material;
 
     // Construct from pixels
     public Face(double x, double y, double z, Material material){
@@ -22,4 +22,8 @@ public class Face {
         this.material = material;
     }
 
+    // Line to be written in obj file
+    public String getMarkup() {
+        return "f " + vertices[1].id + " " + vertices[0].id + " " + vertices[2].id + " " + vertices[3].id;
+    }
 }
