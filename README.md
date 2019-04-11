@@ -1,6 +1,3 @@
-# java-png-to-obj
-Command-line tool for converting a PNG image to 3D model
-
 # Installation
 1. Install Java
 2. Download latest release of [java-obj-to-png](https://github.com/jonivesto/java-png-to-obj/releases/latest)
