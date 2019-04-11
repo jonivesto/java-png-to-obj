@@ -12,7 +12,6 @@ public class Material {
         this.name = name;
     }
 
-    // Normalize values in range 0-255 to range 0.0-1.0
     // Return string to be written in .mtl file
     public String getDiffuse(){
         return roundTwoPlaces((double)color.getRed()/255) + " "

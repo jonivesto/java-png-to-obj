@@ -16,12 +16,6 @@ public class Face {
         this.material = material;
     }
 
-    // Construct from vertices
-    public Face(Vertex[] vertices, Material material){
-        this.vertices = vertices;
-        this.material = material;
-    }
-
     // Line to be written in obj file
     public String getMarkup() {
         return "f " + vertices[1].id + " " + vertices[0].id + " " + vertices[2].id + " " + vertices[3].id;

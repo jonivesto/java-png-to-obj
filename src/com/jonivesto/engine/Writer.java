@@ -42,13 +42,6 @@ public class Writer {
         } writer.println("");
     }
 
-    // Print all generated materials
-    private void printMaterials() {
-        for (Material material : materials) {
-            System.out.println("Material: " + material.name);
-        }
-    }
-
     // Write .obj file
     public void generateObj(){
         // Prepare writer
@@ -59,6 +52,7 @@ public class Writer {
         setHeaders(writer);
 
         // Get each pixel
+        System.out.println("1/4 Creating model..");
         for(int i = 0; i < data.length; i++) {
             for(int j = 0; j < data[i].length; j++) {
 
@@ -88,19 +82,19 @@ public class Writer {
                     // Create faces
                     faces.add(new Face(i, j, 0.0, material));
 
-                    // Print preview
-                    System.out.print("10");
-                } else System.out.print("  ");
-            } System.out.println();
+                    // Print preview ASCII art
+                    //System.out.print("10");
+                } //else System.out.print("  ");
+            } //System.out.println();
         }
 
         // Declare material file
         writer.println("# Materials");
         writer.println("mtllib " + filename() + ".mtl");
         writer.println("");
-        printMaterials();
 
         // Write vertices
+        System.out.println("2/4 Writing vertices. This may take some time..");
         writer.println("# Vertices");
         for (Face face : faces) {
             for (Vertex vertex : face.vertices) {
@@ -116,6 +110,7 @@ public class Writer {
         }
 
         // Write faces
+        System.out.println("3/4 Writing faces..");
         String currentMaterial = "";
         writer.println("");
         writer.println("# Faces");
@@ -129,7 +124,7 @@ public class Writer {
 
         // Save and close
         writer.close();
-        System.out.println("File: " + filepath(".obj"));
+        System.out.println("Output: " + filepath(".obj"));
     }
 
     // Write .mtl file
@@ -142,6 +137,7 @@ public class Writer {
         setHeaders(writer);
 
         // Define and write materials
+        System.out.println("4/4 Writing materials..");
         for (Material material : materials) {
             writer.println("newmtl " + material.name); // Declare
             writer.println("illum 1"); // Illumination
@@ -154,7 +150,7 @@ public class Writer {
 
         // Save and close
         writer.close();
-        System.out.println("File: " + filepath(".mtl"));
+        System.out.println("Output: " + filepath(".mtl"));
     }
 
     // Create material name from Color object

@@ -20,6 +20,12 @@ public class Reader {
         int w = image.getWidth();
         int h = image.getHeight();
 
+        // Check if image is legal size
+        if(w > 255 || h > 255 || h < 1 || w < 1){
+            System.err.println("Image resolution is too high. Width and height must be in range [1 - 255]");
+            System.exit(0);
+        }
+
         Color[][] pixels = new Color[w][h];
 
         // Get pixels
