@@ -1,6 +1,19 @@
 # java-png-to-obj
 Command-line tool for converting a PNG image to 3D model
 
+# Installation
+1. Install Java
+2. Download latest release of [java-obj-to-png](https://github.com/jonivesto/java-png-to-obj/releases/latest)
+3. if you chose the zip package, extract
+
+# Run
+1. Run the executable jar on command line: `java -jar png-to-obj.jar`
+2. Type in absolute path to the png file. Example: `C:\Users\joni\images\sword.png`
+3. Output files are created in the same directory where the input file (.png) was.
+
+# Limitations
+- The height and width of the image should be less than 256 pixels. This can be bypassed by editing the source code, but processing large images is really slow
+
 # License
 Copyright (c) 2019 Joni-Pekka Vesto
 
