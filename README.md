@@ -6,7 +6,7 @@
 # Run
 1. Run the executable jar on command line: `java -jar png-to-obj.jar`
 2. Type in absolute path to the png file. Example: `C:\Users\joni\images\sword.png`
-3. Output files are created in the same directory where the input file (.png) was.
+3. Output files are created in the same directory where the input file (.png) was
 
 # Limitations
 - The height and width of the image should be less than 256 pixels. This can be bypassed by editing the source code, but processing large images is really slow
